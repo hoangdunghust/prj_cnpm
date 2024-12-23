@@ -1,0 +1,94 @@
+gotime/
+│
+├── backend/                    # Backend: Node.js + Express
+│   ├── config/                 # Cấu hình chung (DB, JWT, v.v.)
+│   │   ├── db.js               # Kết nối MongoDB
+│   │   └── jwt.js              # Cấu hình JWT
+│   │
+│   ├── controllers/            # Xử lý logic cho các route
+│   │   ├── authController.js   # Xử lý đăng ký, đăng nhập
+│   │   ├── userController.js   # Xử lý tài khoản người dùng
+│   │   ├── workerController.js # Xử lý người giúp việc
+│   │   ├── bookingController.js# Xử lý đặt lịch
+│   │   └── reviewController.js # Xử lý đánh giá
+│   │
+│   ├── middleware/             # Middleware bảo mật
+│   │   ├── authMiddleware.js   # Kiểm tra JWT
+│   │   └── errorMiddleware.js  # Xử lý lỗi
+│   │
+│   ├── models/                 # Định nghĩa MongoDB Schema
+│   │   ├── User.js             # Schema cho người dùng
+│   │   ├── Worker.js           # Schema cho người giúp việc
+│   │   ├── Booking.js          # Schema đặt lịch
+│   │   └── Review.js           # Schema đánh giá
+│   │
+│   ├── routes/                 # Các route API
+│   │   ├── authRoutes.js       # Route đăng nhập/đăng ký
+│   │   ├── userRoutes.js       # Route quản lý người dùng
+│   │   ├── workerRoutes.js     # Route tìm kiếm và quản lý giúp việc
+│   │   ├── bookingRoutes.js    # Route đặt lịch
+│   │   └── reviewRoutes.js     # Route đánh giá
+│   │
+│   ├── utils/                  # Các công cụ tiện ích
+│   │   └── errorHandler.js     # Xử lý lỗi
+│   │
+│   ├── .env                    # Biến môi trường
+│   ├── server.js               # Điểm bắt đầu của backend
+│   └── package.json            # Thông tin và dependency backend
+│
+└── frontend/                   # Frontend: React.js
+    ├── public/                 # File tĩnh (favicon, index.html)
+    │   └── index.html
+    │
+    ├── src/                    # Code chính
+    │   ├── api/                # API gọi đến backend
+    │   │   ├── authAPI.js      # API đăng nhập/đăng ký
+    │   │   ├── userAPI.js      # API người dùng
+    │   │   ├── workerAPI.js    # API giúp việc
+    │   │   ├── bookingAPI.js   # API đặt lịch
+    │   │   └── reviewAPI.js    # API đánh giá
+    │   │
+    │   ├── assets/             # Ảnh, icons, CSS
+    │   │   └── logo.png
+    │   │
+    │   ├── components/         # Component dùng lại
+    │   │   ├── Navbar.jsx      # Thanh điều hướng
+    │   │   ├── Footer.jsx      # Footer
+    │   │   ├── SearchBar.jsx   # Thanh tìm kiếm
+    │   │   ├── Card.jsx        # Hiển thị thông tin người giúp việc
+    │   │   ├── PrivateRoute.jsx # Bảo vệ các trang cần đăng nhập
+    │   │   └── Calendar.jsx    # Lịch chọn thời gian
+    │   │
+    │   ├── pages/
+    │   │   ├── public/         # Các trang công khai
+    │   │   │   ├── HomePage.jsx       # Trang chủ
+    │   │   │   ├── LoginPage.jsx      # Đăng nhập
+    │   │   │   ├── RegisterPage.jsx   # Đăng ký
+    │   │   │   └── SearchPage.jsx     # Trang tìm kiếm
+    │   │   │
+    │   │   ├── private/        # Các trang yêu cầu đăng nhập
+    │   │   │   ├── ProfilePage.jsx    # Hồ sơ cá nhân
+    │   │   │   ├── BookingPage.jsx    # Đặt lịch
+    │   │   │   ├── ReviewPage.jsx     # Đánh giá
+    │   │   │   └── DashboardPage.jsx  # Bảng điều khiển cho người giúp việc
+    │   │   │
+    │   │   └── NotFoundPage.jsx       # Trang 404 (Trang không tìm thấy)
+    │   │
+    │   ├── routes/             # Cấu hình route cho ứng dụng
+    │   │   └── AppRoutes.jsx   # Định nghĩa tất cả route         
+    │   ├── redux/              # State management (nếu dùng Redux)
+    │   │   ├── actions/        # Action creator
+    │   │   ├── reducers/       # Reducers
+    │   │   └── store.js        # Cấu hình Redux store
+    │   │
+    │   ├── utils/              # Helper function
+    │   │   └── validators.js   # Hàm kiểm tra dữ liệu
+    │   │
+    │   ├── App.jsx             # Component gốc
+    │   ├── index.js            # Điểm bắt đầu frontend
+    │   ├── routes.js           # Cấu hình route cho React Router
+    │   └── package.json        # Thông tin và dependency frontend
+    │
+    ├── .gitignore              # Ignore node_modules, build
+    ├── package.json            # Thông tin dự án
+    └── README.md               # Hướng dẫn setup dự án
