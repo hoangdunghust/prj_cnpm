@@ -38,7 +38,7 @@
 .menu {
   list-style: none; /* Remove bullet points */
   display: flex; /* Flexbox for layout */
-  margin: 20px 100px; /* Space between logo and menu */
+  margin: 10px 40px; /* Space between logo and menu */
   font-size: 18px; /* Tăng cỡ chữ cho menu */
 }
 

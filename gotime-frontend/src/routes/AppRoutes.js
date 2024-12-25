@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import ForgotPasswordPage from '../pages/public/ForgotPasswordPage';
 import CreatePost from '../pages/private/CreatePost';
@@ -37,12 +37,8 @@ const AppRoutes = () => {
             <CreatePost />
           }
         />
-        <Route
-          path="/postcard/:id"
-          element={
-            <CreatePost />
-          }
-        />
+        <Route path="/post/:id" element={<PostCard />} />
+        
         <Route path="/profile" 
         element={
        

@@ -8,8 +8,7 @@ const userRoutes = require('./routes/userRoutes');
 const workerRoutes = require('./routes/workerRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
-
-const postsRoute = require('./routes/posts');
+const postsRoute = require('./routes/postsRoutes');
 
 // Sử dụng route
 
@@ -32,7 +31,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/workers', workerRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/reviews', reviewRoutes);
-app.use('/api/posts', postsRoute);
+app.use('/api/post', postsRoute);
 // Chạy server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

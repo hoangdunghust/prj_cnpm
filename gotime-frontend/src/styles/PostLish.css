@@ -1,4 +1,8 @@
 .container__postlish{
-background-color: antiquewhite;
+background-color: rgb(185, 171, 154);
 padding: 5px 50px;
 }
+.postlish__header{
+    color: black;
+}
+

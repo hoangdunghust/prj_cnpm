@@ -3,27 +3,31 @@ import '../styles/CardUsed.css';
 import { useNavigate } from 'react-router-dom';
 
 const CardUsed = ({ post }) => { // Đảm bảo prop là 'post'
-  const { id, title, content, provinces, districts, username, date } = post; // Chỉ lấy những trường cần thiết
+  const { _id, title, content, province, district, name, date } = post; // Chỉ lấy những trường cần thiết
   const navigate = useNavigate(); // Sử dụng useNavigate để chuyển hướng
 
   const handleViewMore = () => {
-    // Chuyển hướng đến trang chi tiết bài viết
-    navigate(`/post/${id}`);
+    if (_id) {
+      // Chuyển hướng đến trang chi tiết bài viết với _id hợp lệ
+      navigate(`/post/${_id}`);
+    } else {
+      console.error('Không tìm thấy id của bài đăng');
+    }
   };
+  
 
   return (
- 
     <div className="postcard__used">
       <h2 className="postcard__title">{title}</h2>
       <p className="postcard__content">{content}</p>
       <div className="postcard__infomation">
-        <span>Người đăng: {username}</span>
+        <span>Người đăng: {name}</span>
         <span className="mx-2">|</span>
         <span>Ngày: {new Date(date).toLocaleDateString()}</span>
         <span className="mx-2">|</span>
-        <span> {provinces}</span>
+        <span> {province}</span>
         <span className="mx-2">|</span>
-        <span> {districts}</span>
+        <span> {district}</span>
       </div>
       <button
         onClick={handleViewMore}

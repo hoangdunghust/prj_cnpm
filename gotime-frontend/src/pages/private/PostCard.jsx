@@ -1,31 +1,50 @@
-import React from 'react';
-import '../../styles/PortCard.css'; // Import CSS cho PostCard
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import '../../styles/PortCard.css'; // Import CSS cho PostCard
 
-const posts = [
-    {
-        id: "1",
-        tel: "0867676305",
-        province: "23",
-        district: "",
-        title: "",
-        content: "",
-        job: "2",
-        typeWork: "1",
-        pay: "1",
-        salary: "",
-        sex: "0",
-        year: "0",
-        requirements: "0",
-        benefits: "",
-        images: [],
-    }];
 const PostCard = () => {
-    const { id } = useParams(); // Lấy id từ URL
-      const post = posts.find(post => post.id === parseInt(id, 10)); // Tìm worker theo id
-      if (!post) {
-        return <p>Không tìm thấy thông tin người lao động.</p>;
-      }
+  const { id } = useParams(); // Lấy id từ URL
+  console.log(id);
+  const [post, setPost] = useState(null);  // State để lưu dữ liệu bài đăng
+  const [loading, setLoading] = useState(true); // State để quản lý loading
+
+  useEffect(() => {
+    if (!id) {
+      console.error("ID không hợp lệ.");
+      return;
+    }
+  
+    fetch(`http://localhost:5000/api/post/${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Bài đăng không tồn tại');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPost(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Lỗi khi tải bài đăng:', error);
+        setLoading(false);
+      });
+  }, [id]); // Đảm bảo id thay đổi khi URL thay đổi
+   // Đảm bảo id thay đổi khi URL thay đổi
+; // Chạy lại khi id thay đổi
+
+  if (loading) {
+    return <p>Đang tải bài đăng...</p>;
+  }
+
+  if (!post) {
+    return (
+      <p>
+        Không tìm thấy bài đăng. <a href="/">Quay lại trang chủ</a>
+      </p>
+    );
+  }
+
   return (
     <div className="post-card">
       <h2 className="post-title">{post.title}</h2>
@@ -41,10 +60,16 @@ const PostCard = () => {
         <strong>Quyền lợi:</strong> {post.benefits} <br />
       </p>
       <div className="post-images">
-        {post.images.map((image, index) => (
-          <img key={index} src={URL.createObjectURL(image)} alt={`Post Image ${index + 1}`} />
-        ))}
+        {post.images && post.images.length > 0 ? (
+          post.images.map((image, index) => (
+            <img key={index} src={`/images/${image}`} alt={`Post Image ${index + 1}`} />
+          ))
+        ) : (
+          <p>Không có hình ảnh nào được đính kèm.</p>
+        )}
       </div>
+      <button class="exit" ><a href="/" class=""> Thoát</a>
+        </button>
     </div>
   );
 };
