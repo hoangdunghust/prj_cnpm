@@ -14,7 +14,7 @@ const Header = ({ onSearch }) => {
     localStorage.removeItem("userName");
     navigate("/login");
   };
-  const handleManage = () => navigate("/manage");
+  const handleManage = () => navigate("/workers");
   const handleProfile = () => navigate("/profile");
   const handlePost = () => navigate("/post");
 

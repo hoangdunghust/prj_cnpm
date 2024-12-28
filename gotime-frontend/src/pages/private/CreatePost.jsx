@@ -5,7 +5,7 @@ const CreatePost = () => {
   const [formData, setFormData] = useState({
     id: "1",
     tel: "",
-    province: "79",
+    province: "hồ chí minh",
     district: "",
     title: "",
     content: "",
@@ -33,6 +33,7 @@ const CreatePost = () => {
     e.preventDefault();
     const errors = {};
   
+    // Kiểm tra lỗi trên các trường cần thiết
     if (!formData.tel.trim()) {
       errors.tel = "Số điện thoại là bắt buộc.";
     }
@@ -42,41 +43,48 @@ const CreatePost = () => {
     if (!formData.content.trim()) {
       errors.content = "Nội dung là bắt buộc.";
     }
-    if (!formData.salary.trim()) {
-      errors.salary = "Lương là bắt buộc.";
+    if (!formData.salary.trim() || isNaN(formData.salary)) {
+      errors.salary = "Lương là bắt buộc và phải là một số hợp lệ.";
     }
   
+    // Nếu có lỗi, hiển thị
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
       return;
     }
-
+  
+    // Chuyển salary từ string sang số trước khi gửi
+    const dataToSend = {
+      ...formData,
+      salary: parseFloat(formData.salary),  // Chuyển salary sang số
+    };
+  
     // Gửi POST request
     fetch("http://localhost:5000/api/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(dataToSend),
     })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Post created successfully:", data);
-      window.location.href = `/post/${data.id}`;
-    })
-    .catch((error) => {
-      console.error("Error creating post:", error);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Post created successfully:", data);
+        window.location.href = `/post/${data._id}`;  // Điều hướng tới trang bài đăng vừa tạo
+      })
+      .catch((error) => {
+        console.error("Error creating post:", error);
+      });
   };
 
   // Lấy danh sách tỉnh/thành và quận/huyện
-  const [provinces, setProvinces] = useState([]);
-  const [districts, setDistricts] = useState([]);
+  const [province, setProvince] = useState([]);
+  const [district, setDistrict] = useState([]);
 
   useEffect(() => {
     fetch("https://provinces.open-api.vn/api/")
       .then((response) => response.json())
-      .then((data) => setProvinces(data))
+      .then((data) => setProvince(data))
       .catch((error) => console.error("Error fetching provinces:", error));
   }, []);
 
@@ -84,7 +92,7 @@ const CreatePost = () => {
     if (formData.province) {
       fetch(`https://provinces.open-api.vn/api/p/${formData.province}?depth=2`)
         .then((response) => response.json())
-        .then((data) => setDistricts(data.districts || []))
+        .then((data) => setDistrict(data.districts || []))
         .catch((error) => console.error("Error fetching districts:", error));
     }
   }, [formData.province]);
@@ -128,7 +136,7 @@ const CreatePost = () => {
               onChange={handleChange}
             >
               <option value="">Chọn tỉnh/thành</option>
-              {provinces.map((province) => (
+              {province.map((province) => (
                 <option key={province.code} value={province.code}>
                   {province.name}
                 </option>
@@ -147,7 +155,7 @@ const CreatePost = () => {
                   onChange={handleChange}
                 >
                   <option value="">Chọn quận/huyện</option>
-                  {districts.map((district) => (
+                  {district.map((district) => (
                     <option key={district.code} value={district.code}>
                       {district.name}
                     </option>
@@ -204,6 +212,66 @@ const CreatePost = () => {
               onChange={handleChange}
             />
             {errors.salary && <span className="error">{errors.salary}</span>}
+          </div>
+{/* loại công việc */}
+          <div className="form-group">
+            <label>Công việc</label>
+            <input
+              name="job"
+              type="text"
+              className="form-control"
+              value={formData.job}
+              onChange={handleChange}
+            />
+          </div>
+{/* yêu cầu  */}
+          <div className="form-group">
+            <label>Yêu cầu</label>
+            <textarea
+              name="requirements"
+              className="form-control"
+              rows="3"
+              value={formData.requirements}
+              onChange={handleChange}
+            />
+          </div>
+{/* phúc lợi */}
+          <div className="form-group">
+            <label>Phúc lợi</label>
+            <textarea
+              name="benefits"
+              className="form-control"
+              rows="3"
+              value={formData.benefits}
+              onChange={handleChange}
+            />
+          </div>
+{/* giới tính */}
+          <div className="form-group">
+            <label>Giới tính</label>
+            <select
+              name="sex"
+              className="form-control"
+              value={formData.sex}
+              onChange={handleChange}
+            >
+              <option value="0">Không yêu cầu</option>
+              <option value="1">Nam</option>
+              <option value="2">Nữ</option>
+            </select>
+          </div>
+              {/* kinh nghiệm */}
+          <div className="form-group">
+            <label>Kinh nghiệm</label>
+            <select
+              name="year"
+              className="form-control"
+              value={formData.year}
+              onChange={handleChange}
+            >
+              <option value="0">Không yêu cầu</option>
+              <option value="1"> trên 1 năm</option>q
+            </select>
           </div>
 
           {/* Tải ảnh */}

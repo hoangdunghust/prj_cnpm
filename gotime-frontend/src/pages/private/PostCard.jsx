@@ -68,8 +68,8 @@ const PostCard = () => {
           <p>Không có hình ảnh nào được đính kèm.</p>
         )}
       </div>
-      <button class="exit" ><a href="/" class=""> Thoát</a>
-        </button>
+      <button><a href="/">Quay lại trang chủ</a>
+         </button>
     </div>
   );
 };

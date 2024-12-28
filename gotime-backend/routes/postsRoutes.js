@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Post = require("../models/Post")
-let postIdCounter = 4; // ID bắt đầu cho bài đăng mới
+const mongoose = require('mongoose');
 
 
 
@@ -18,19 +18,26 @@ router.get('/', async (req, res) => {
 
 // Lấy bài đăng theo ID
 router.get('/:id', async (req, res) => {
-  try {
-    const postId = mongoose.Types.ObjectId(req.params.id);  // Chuyển đổi ID sang ObjectId
-    const post = await Post.findById(postId);  // Tìm bài đăng bằng ObjectId
+  const { id } = req.params;
 
+  // Kiểm tra nếu ID không hợp lệ
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'ID không hợp lệ' });
+  }
+
+  try {
+    const post = await Post.findById(id); // Tìm bài đăng theo ID
     if (!post) {
-      return res.status(404).json({ message: 'Post not found' });
+      return res.status(404).json({ message: 'Không tìm thấy bài đăng' });
     }
-    res.status(200).json(post);  // Trả về bài đăng tìm thấy
+    res.status(200).json(post); // Trả về bài đăng nếu tìm thấy
   } catch (error) {
-    console.error('Lỗi:', error);  // Log lỗi để dễ dàng theo dõi
+    console.error('Lỗi khi lấy bài đăng:', error);
     res.status(500).json({ message: 'Error retrieving post', error });
   }
 });
+
+
 
 
 // Tạo bài đăng mới
@@ -43,7 +50,11 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    const newPost = new Post(req.body);
+    const newPost = new Post({
+      ...req.body,
+      provinceName: req.body.province, // Assuming province is sent as name
+      districtName: req.body.district,   // Assuming district is sent as name
+    });
     await newPost.save(); // Lưu bài đăng vào MongoDB
     res.status(201).json(newPost);
   } catch (error) {

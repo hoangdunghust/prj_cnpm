@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-  
   tel: { type: String, required: true },
   province: { type: String },
   district: { type: String },
@@ -16,6 +15,7 @@ const postSchema = new mongoose.Schema({
   requirements: { type: String },
   benefits: { type: String },
   images: { type: [String], default: [] },
+  date: { type: Date, default: Date.now },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Post', postSchema);

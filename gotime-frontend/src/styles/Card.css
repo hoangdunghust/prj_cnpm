@@ -6,7 +6,7 @@
 .card{
     background: #d7d5d4;
     width: 300px;
-    height:450px ;
+    height:500px ;
     border-radius: 10px;
     text-align: center;
     overflow: hidden;
@@ -40,7 +40,7 @@
 }
 .card p{
     color: var(--primary--color);
-    font-size: 25px;
+    font-size: 20px;
 }
 .social{
     margin: 25px 0;

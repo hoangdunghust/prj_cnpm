@@ -41,6 +41,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 140px;
   }
   
   .worker-actions button:hover {
