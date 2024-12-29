@@ -1,58 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const UserProfileTable = () => {
-  // Dữ liệu mẫu
-  const userData = [
-    {
-      id: 1,
-      fullName: 'Nguyễn Văn A',
-      password: '********',
-      address: '123 Đường ABC, Quận 1, TP. HCM',
-      phone: '0123456789',
-      email: 'nguyenvana@example.com',
-      role: 'Admin',
-    },
-    {
-      id: 2,
-      fullName: 'Trần Thị B',
-      password: '********',
-      address: '456 Đường XYZ, Quận 2, TP. HCM',
-      phone: '0987654321',
-      email: 'tranthib@example.com',
-      role: 'User',
-    },
-    // Thêm dữ liệu người dùng khác tại đây
-  ];
+  const [users, setUsers] = useState([
+    { id: 1, name: 'John Doe', email: 'john@example.com', phone: '123456789', address: '123 Street', role: 'Admin' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', phone: '987654321', address: '456 Avenue', role: 'User' },
+  ]);
+
+  const [newUser, setNewUser] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    role: '',
+  });
+
+  // Handle input changes for new user
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // Add a new user
+  const handleAddUser = () => {
+    const id = users.length + 1; // Automatically generate id for new user
+    setUsers([...users, { ...newUser, id }]);
+    setNewUser({
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      role: '',
+    });
+  };
+
+  // Edit user data
+  const handleEditUser = (id) => {
+    const userToEdit = users.find((user) => user.id === id);
+    setNewUser(userToEdit); // Set form values to the user's current data
+  };
+
+  // Delete user
+  const handleDeleteUser = (id) => {
+    const updatedUsers = users.filter((user) => user.id !== id);
+    setUsers(updatedUsers);
+  };
 
   return (
-    <div className="user-profile-container">
-      <h2>Bảng Hồ sơ Người dùng</h2>
+    <div>
+      <h2>User Profiles</h2>
+      <form>
+        <input type="text" name="name" value={newUser.name} onChange={handleChange} placeholder="Name" />
+        <input type="email" name="email" value={newUser.email} onChange={handleChange} placeholder="Email" />
+        <input type="text" name="phone" value={newUser.phone} onChange={handleChange} placeholder="Phone" />
+        <input type="text" name="address" value={newUser.address} onChange={handleChange} placeholder="Address" />
+        <input type="text" name="role" value={newUser.role} onChange={handleChange} placeholder="Role" />
+        <button type="button" onClick={handleAddUser}>Add User</button>
+      </form>
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Họ và Tên</th>
-            <th>Mật khẩu</th>
-            <th>Địa chỉ</th>
-            <th>Số điện thoại</th>
+            <th>Name</th>
             <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
             <th>Role</th>
-            <th>Hành động</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {userData.map((user) => (
+          {users.map((user) => (
             <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.fullName}</td>
-              <td>{user.password}</td>
-              <td>{user.address}</td>
-              <td>{user.phone}</td>
+              <td>{user.name}</td>
               <td>{user.email}</td>
+              <td>{user.phone}</td>
+              <td>{user.address}</td>
               <td>{user.role}</td>
               <td>
-                <button>Sửa</button>
-                <button>Xóa</button>
+                <button onClick={() => handleEditUser(user.id)}>Edit</button>
+                <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
               </td>
             </tr>
           ))}

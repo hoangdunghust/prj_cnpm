@@ -1,0 +1,57 @@
+.post-detail-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .post-detail-page h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .post-info {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .helper-selection {
+    margin-top: 20px;
+  }
+  
+  .helper-selection label {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .helper-selection select {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+  
+  .helper-selection button {
+    padding: 8px 16px;
+    background-color: #ff5400;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .helper-selection button:hover {
+    background-color: #aeac9a;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 8px 16px;
+    background-color: #aeac9a;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ff5400;
+  }
+  
