@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import '../../styles/PortCard.css'; // Import CSS cho PostCard
-
+import { useNavigate } from 'react-router-dom';
 const PostCard = () => {
+  const navigate = useNavigate();
   const { id } = useParams(); // Lấy id từ URL
   console.log(id);
   const [post, setPost] = useState(null);  // State để lưu dữ liệu bài đăng
   const [loading, setLoading] = useState(true); // State để quản lý loading
-
+  const handleViewMore = () => {
+    navigate(`/booking`);
+  };
   useEffect(() => {
     if (!id) {
       console.error("ID không hợp lệ.");
@@ -67,9 +70,14 @@ const PostCard = () => {
         ) : (
           <p>Không có hình ảnh nào được đính kèm.</p>
         )}
-      </div>
+      </div> 
+      <div class="post-btn">
       <button><a href="/">Quay lại trang chủ</a>
          </button>
+      <button onClick={handleViewMore} className="card__button">
+        Xem thêm
+      </button>
+      </div>
     </div>
   );
 };

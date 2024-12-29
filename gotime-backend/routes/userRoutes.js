@@ -24,7 +24,7 @@ const verifyToken = (req, res, next) => {
 
 
 // Route GET để lấy thông tin người dùng
-router.get('/profile', verifyToken, async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password'); // Lấy thông tin người dùng, không lấy password
     if (!user) return res.status(404).send('Người dùng không tồn tại');
@@ -37,7 +37,7 @@ router.get('/profile', verifyToken, async (req, res) => {
 
 
 // Cập nhật thông tin người dùng
-router.put('/profile', verifyToken, async (req, res) => {
+router.put('/', verifyToken, async (req, res) => {
   try {
     const { username, email } = req.body;
     const user = await User.findById(req.user.id);

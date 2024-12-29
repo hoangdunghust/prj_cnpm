@@ -23,12 +23,16 @@ const AppRoutes = () => {
         element={<HomePage />} />
         <Route path="/forgot-password" 
         element={<ForgotPasswordPage />} />
+        
         <Route path="/login"
           element={<LoginPage />}/>
+
         <Route path="/register"
           element={<RegisterPage />}/>
+
         <Route path="/post"
         element={<CreatePost />}/>
+
         <Route path="/post/:id" 
         element={<PostCard />} />
         

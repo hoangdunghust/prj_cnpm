@@ -6,6 +6,7 @@
     padding: 16px;
     margin-bottom: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
   }
   
   .post-title {
@@ -33,4 +34,9 @@
     height: 100px; /* Kích thước ảnh */
     object-fit: cover;
     border-radius: 4px;
+  }
+  .post-btn{
+    display: flex;
+    width: 500px;
+    margin: 20px;
   }

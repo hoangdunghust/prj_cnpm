@@ -1,109 +1,67 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Typography, TextField, Button, Alert } from '@mui/material';
-import { getUserInfo, updateUserInfo } from '../../api/userAPI'; // Import các API
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import styles from '../../styles/ProfilePage.css';
 
-const ProfilePage = () => {
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState(''); // Thay name thành username
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      setError('Bạn chưa đăng nhập');
-      setLoading(false);
-      return;
-    }
-  
-    // Lấy thông tin người dùng từ API
-    getUserInfo(token)
-      .then((data) => {
-        setUser(data);
-        setEmail(data.email);
-        setUsername(data.username); // Cập nhật username
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err); // In lỗi ra console để kiểm tra
-        setError('Không thể tải thông tin hồ sơ');
-        setLoading(false);
-      });
-  }, []);
-  
-
-  const handleUpdate = async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      setError('Bạn chưa đăng nhập');
-      return;
-    }
-
-    try {
-      // Gửi yêu cầu cập nhật thông tin người dùng
-      const updatedUser = await updateUserInfo(token, { username, email }); // Gửi username thay vì name
-      setUser(updatedUser); // Cập nhật lại state với thông tin người dùng mới
-      setError('');
-      alert('Cập nhật thành công!');
-    } catch (err) {
-      setError('Cập nhật thông tin thất bại');
-    }
-  };
-
-  if (loading) {
-    return <Typography>Đang tải...</Typography>;
-  }
-
+const WorkerProfile = ({ worker, reviews }) => {
   return (
-    <Box
-      sx={{
-        maxWidth: 400,
-        margin: '50px auto',
-        padding: 3,
-        boxShadow: 3,
-        borderRadius: 2,
-        backgroundColor: '#f9f9f9',
-      }}
-    >
-      <Typography variant="h4" gutterBottom textAlign="center">
-        Hồ Sơ Của Bạn
-      </Typography>
+    <div className={styles.profilePage}>
+      {/* Thông tin cơ bản */}
+      <div className={styles.basicInfo}>
+        <img src={worker.image} alt={worker.name} className={styles.profileImage} />
+        <h1>{worker.name}</h1>
+        <p><strong>Location:</strong> {worker.location}</p>
+        <p><strong>Phone:</strong> {worker.phone}</p>
+        <p><strong>Skills:</strong> {worker.skills}</p>
+        <p><strong>Experience:</strong> {worker.experience}</p>
+        <p><strong>Languages:</strong> {worker.languages}</p>
+        <p><strong>Certifications:</strong> {worker.certifications}</p>
+        <p><strong>Age:</strong> {worker.age}</p>
+        <p><strong>Gender:</strong> {worker.gender}</p>
+        <p><strong>Hourly Rate:</strong> ${worker.hourlyRate}/hour</p>
+        <p className={styles.description}>{worker.description}</p>
+      </div>
 
-      {error && <Alert severity="error">{error}</Alert>}
-
-      {user && (
-        <form>
-          <TextField
-            label="Tên Người Dùng"
-            value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
-            fullWidth
-            margin="normal"
-          />
-          <TextField
-            label="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            fullWidth
-            margin="normal"
-            disabled
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleUpdate}
-            fullWidth
-            sx={{ marginTop: 2 }}
-          >
-            Cập Nhật Thông Tin
-          </Button>
-        </form>
-      )}
-    </Box>
+      {/* Phần đánh giá */}
+      <div className={styles.reviewsSection}>
+        <h2>Customer Reviews</h2>
+        {reviews.length > 0 ? (
+          reviews.map((review, index) => (
+            <div key={index} className={styles.reviewCard}>
+              <div className={styles.reviewHeader}>
+                <span className={styles.stars}>{'⭐'.repeat(review.rating)}</span>
+                <span className={styles.rating}>({review.rating}/5)</span>
+              </div>
+              <p className={styles.comment}>{review.comment}</p>
+              <p className={styles.reviewer}><strong>- {review.reviewer}</strong></p>
+            </div>
+          ))
+        ) : (
+          <p>No reviews available.</p>
+        )}
+      </div>
+    </div>
   );
 };
 
-export default ProfilePage;
+export default WorkerProfile;
+
+// Ví dụ về worker và reviews được truyền vào
+// const worker = {
+//   name: 'John Doe',
+//   image: 'https://via.placeholder.com/150',
+//   location: 'New York, USA',
+//   phone: '123-456-7890',
+//   skills: 'Plumbing, Electrical',
+//   experience: '5 years',
+//   languages: 'English, Spanish',
+//   certifications: 'Licensed Electrician',
+//   age: 35,
+//   gender: 'Male',
+//   hourlyRate: 25,
+//   description: 'Experienced handyman providing quality work.'
+// };
+
+// const reviews = [
+//   { rating: 5, comment: 'Excellent work, very professional!', reviewer: 'Alice' },
+//   { rating: 4, comment: 'Good job, but could improve punctuality.', reviewer: 'Bob' },
+//   { rating: 5, comment: 'Highly recommended!', reviewer: 'Charlie' }
+// ];

@@ -58,7 +58,7 @@ const CreateWorker = () => {
       <input
         type="text"
         name="name"
-        placeholder="Name"
+        placeholder="HỌ VÀ TÊN"
         onChange={handleChange}
         required
       />
@@ -72,74 +72,74 @@ const CreateWorker = () => {
       <input
         type="text"
         name="location"
-        placeholder="Location"
+        placeholder="Địa chỉ"
         onChange={handleChange}
         required
       />
       <input
         type="tel"
         name="phone"
-        placeholder="Phone (e.g., 123-456-7890)"
+        placeholder="Điện thoại (e.g., 123-456-7890)"
         onChange={handleChange}
         required
       />
       <input
         type="text"
         name="skills"
-        placeholder="Skills (comma separated)"
+        placeholder="Kĩ nẵng (DỌN DẸP NHÀ)"
         onChange={handleChange}
       />
       <input
         type="text"
         name="experience"
-        placeholder="Experience"
+        placeholder="Kinh nghiệm"
         onChange={handleChange}
       />
       <input
         type="text"
         name="availability"
-        placeholder="Availability"
+        placeholder="Trạng thái (BẬN,RẢNH)"
         onChange={handleChange}
       />
       <input
         type="number"
         name="hourlyRate"
-        placeholder="Hourly Rate"
+        placeholder="Gía"
         onChange={handleChange}
         min="0"
-        step="0.01"
+        step="1000"
       />
       <textarea
         name="description"
-        placeholder="Description"
+        placeholder="Mô tả về bản thân"
         onChange={handleChange}
       ></textarea>
       <input
         type="text"
         name="languages"
-        placeholder="Languages (comma separated)"
+        placeholder="Ngôn ngữ (TIẾNG VIỆT)"
         onChange={handleChange}
       />
       <input
         type="text"
         name="certifications"
-        placeholder="Certifications (comma separated)"
+        placeholder="Chứng chỉ"
         onChange={handleChange}
       />
       <input
         type="number"
         name="age"
-        placeholder="Age"
+        placeholder="Tuổi"
         onChange={handleChange}
         min="18"
       />
-      <select name="gender" onChange={handleChange} required>
-        <option value="">Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
+      <select name="GIỚI TÍNH" onChange={handleChange} required>
+        <option value="">Chọn giới tính</option>
+        <option value="Male">NAM</option>
+        <option value="Female">NỮ</option>
+        <option value="Other">KHÁC</option>
       </select>
-      <button type="submit" className={styles.submitButton}>Create Worker</button>
+      <button type="submit" className={styles.submitButton}>Tạo hồ sơ</button>
     </form>
   );
 };

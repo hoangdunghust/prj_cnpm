@@ -27,11 +27,12 @@ connectDB(); // Gọi hàm kết nối MongoDB
 
 // Sử dụng các routes với các prefix khác nhau để tránh trùng lặp
 app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/profile', userRoutes);
 app.use('/api/workers', workerRoutes);
-app.use('/api/bookings', bookingRoutes);
+app.use('/api/booking', bookingRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/post', postsRoute);
+
 // Chạy server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
