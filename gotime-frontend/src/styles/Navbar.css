@@ -160,3 +160,82 @@
     font-size: 16px; /* Thu nhỏ icon */
   }
 }
+
+
+/* Phần tìm kiếm và đăng tin */
+.menu-search-a {
+  display: none; /* Ẩn mặc định */
+  gap: 20px;
+  align-items: center;
+  flex: 1;
+}
+
+/* Hiển thị khi hover vào header-container */
+.header-container:hover .menu-search-a {
+  display: flex; /* Hiển thị khi hover */
+}
+
+/* Phần tìm kiếm */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #989492;
+  border-radius: 24px;
+  padding: 5px 10px;
+  max-width: 460px;
+  width: 100%;
+  height: 30px;
+  margin-left: auto;
+  box-shadow: rgb(17, 78, 138) 0px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+.search-input::placeholder {
+  color: var(--text--color);
+}
+
+.search-icon {
+  color: var(--text--color);
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+/* Nút đăng tin */
+.btn-post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--buttom--color); /* Màu nền nút */
+  color: var(--text--color); /* Màu chữ nút */
+  border: none; /* Không có viền */
+  padding: 12px 20px; /* Padding cho nút */
+  border-radius: 50px; /* Bo góc tròn */
+  cursor: pointer; /* Hiển thị con trỏ pointer */
+  font-size: 18px; /* Cỡ chữ nút */
+  transition: background-color 1s ease, transform 1s ease; /* Hiệu ứng hover */
+}
+
+.post-button:hover {
+  background-color: var(--main2--color); /* Đổi màu nền khi hover */
+  color: var(--main2--color); /* Đổi màu chữ khi hover */
+  transform: scale(1.05); /* Phóng to nút khi hover */
+}
+
+.icon-post i {
+  font-size: 18px;
+}

@@ -32,81 +32,80 @@ const Header = ({ onSearch }) => {
 
   return (
     <header className="header">
-      <div className="header-container">
-        {/* Logo */}
-        <div className="menu-logo">
-          <div className="logo">
-            <a href="/">
-              <i class="fa-solid fa-dragon"><b>Timgiupviec</b></i>
-            </a>
-          </div>
-          {/* Menu items */}
-          <ul className="menu">
-            {token ? (
-              <>
-                <li className="menu-item">
-                  <button onClick={handleManage} className="menu-button">
-                    <span className="icon ic-manager"></span>Quản lý
-                  </button>
-                </li>
-                <li className="menu-item">
-                  <NotificationDropdown notifications={notifications} />
-                </li>
-                <li className="menu-item">
-                  <button onClick={handleProfile} className="menu-button">
-                    <span className="icon ic-user"></span>
-                    {userName || "Tài khoản"}
-                  </button>
-                </li>
-                <li className="menu-item">
-                  <button onClick={handleLogout} className="menu-button">
-                    <span className="icon ic-logout"></span>Đăng xuất
-                  </button>
-                </li>
-              </>
-            ) : (
-              <li className="menu-item">
-                <button
-                  onClick={() => navigate("/login")}
-                  className="menu-button"
-                >
-                  <span className="icon ic-login"></span>Đăng nhập
-                </button>
-              </li>
-            )}
-          </ul>
-        </div>
-
-        {/* Search & Post */}
-        <div className="menu-search-a">
-          <div className="search">
-          <form onSubmit={handleSubmit} className="search-wrapper">
-        <input
-          type="text"
-          placeholder="Tìm kiếm người giúp việc..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="search-input"
-          aria-label="Tìm kiếm người giúp việc" // Thêm mô tả cho input
-        />
-        
-        <span class="search-icon">
-          <i className="fa-solid fa-search"></i>
-        </span>
-          </form>
-
-          </div>
-          <div className="btn-post">
-            <button onClick={handlePost} className="post-button">
-              <span style={{ color: "#ffffff" }}>Đăng tin</span>
-              <span className="icon-post">
-              <i class="fa-solid fa-arrow-up-from-bracket"></i>
-              </span>
-            </button>
-          </div>
-        </div>
+  <div className="header-container">
+    {/* Logo */}
+    <div className="menu-logo">
+      <div className="logo">
+        <a href="/">
+          <i className="fa-solid fa-dragon"><b>Timgiupviec</b></i>
+        </a>
       </div>
-    </header>
+      {/* Menu items */}
+      <ul className="menu">
+        {token ? (
+          <>
+            <li className="menu-item">
+              <button onClick={handleManage} className="menu-button">
+                <span className="icon ic-manager"></span>Quản lý
+              </button>
+            </li>
+            <li className="menu-item">
+              <NotificationDropdown notifications={notifications} />
+            </li>
+            <li className="menu-item">
+              <button onClick={handleProfile} className="menu-button">
+                <span className="icon ic-user"></span>
+                {userName || "Tài khoản"}
+              </button>
+            </li>
+            <li className="menu-item">
+              <button onClick={handleLogout} className="menu-button">
+                <span className="icon ic-logout"></span>Đăng xuất
+              </button>
+            </li>
+          </>
+        ) : (
+          <li className="menu-item">
+            <button
+              onClick={() => navigate("/login")}
+              className="menu-button"
+            >
+              <span className="icon ic-login"></span>Đăng nhập
+            </button>
+          </li>
+        )}
+      </ul>
+    </div>
+
+    {/* Search & Post (Ẩn đi mặc định, chỉ hiển thị khi hover vào header) */}
+    <div className="menu-search-a">
+      <div className="search">
+        <form onSubmit={handleSubmit} className="search-wrapper">
+          <input
+            type="text"
+            placeholder="Tìm kiếm người giúp việc..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="search-input"
+            aria-label="Tìm kiếm người giúp việc"
+          />
+          <span className="search-icon">
+            <i className="fa-solid fa-search"></i>
+          </span>
+        </form>
+      </div>
+      <div className="btn-post">
+        <button onClick={handlePost} className="post-button">
+          <span style={{ color: "#ffffff" }}>Đăng tin</span>
+          <span className="icon-post">
+            <i className="fa-solid fa-arrow-up-from-bracket"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
   );
 };
 
