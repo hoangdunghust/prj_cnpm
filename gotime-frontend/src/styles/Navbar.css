@@ -11,152 +11,150 @@
 
 .header {
   position: sticky;
-  top: 0; /* Đảm bảo navbar dính ở phía trên cùng */
-  z-index: 1000; /* Đảm bảo navbar nằm trên các phần tử khác */
-  background-color: var(--main2--color); /* White background */
-  padding: 10px 20px; /* Padding for the header */
-  display: flex; /* Flexbox for layout */
-  justify-content: space-between; /* Space between items */
-  align-items: center; /* Center items vertically */
-  font-size: 18px; /* Tăng cỡ chữ cho header */
+  top: 0;
+  z-index: 1000;
+  background-color: var(--main2--color);
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
   font-family: "Poppins";
 }
 
 .header-container {
-
+  display: flex;
   width: 100%;
-  margin: 0px auto;
-  position: relative;
-  padding: 0px;
-  max-width: 990px;
+  height: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: center;
 }
 
-.logo-image {
-  height: 50px; /* Logo height */
+.logo {
+  flex: 1; /* Chiếm 1/3 khối đầu */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logo a {
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .menu {
-  list-style: none; /* Remove bullet points */
-  display: flex; /* Flexbox for layout */
-  margin: 10px 40px; /* Space between logo and menu */
-  font-size: 18px; /* Tăng cỡ chữ cho menu */
+  flex: 3; /* Chiếm 1/3 khối giữa */
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
 }
 
 .menu-item {
-  margin: 0 20px; /* Space between menu items */
+  display: flex;
+  align-items: center;
 }
 
-.menu-logo {
-  display: flex; /* Flexbox for layout */
-  align-items: center; /* Center items vertically */
- 
-}
-.menu-logo a i{
-  color: black;
-  font-size: 25px;
-}
-.menu-logo a b{
-   color: var(--text--color);
-   font-size: 20px;
-}
 .menu-button {
-  background: none; /* No background */
-  border: none; /* No border */
-  cursor: pointer; /* Pointer cursor */
-  color: black; /* Text color */
-  font-size: 18px; /* Tăng cỡ chữ cho button */
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: black;
+  font-size: 16px;
 }
 
 .menu-button:hover {
-  text-decoration: underline; /* Underline on hover */
+  text-decoration: underline;
 }
 
-
-.menu-search-a{
+.btn-post .post-button {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 8px;
+  background-color: var(--buttom--color);
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.search {
-  flex: 1;
-  margin-right: 30px;
+.btn-post .post-button:hover {
+  background-color: var(--main2--color);
+  transform: scale(1.05);
+}
 
+.search-logout {
+  flex: 2; /* Chiếm 1/3 khối cuối */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .search-wrapper {
+  flex: 3;
   display: flex;
-  align-items: center;
+  align-items: center; /* Đảm bảo nội dung căn giữa theo trục dọc */
+  justify-content: center;
   background-color: #fff;
   border: 1px solid #989492;
   border-radius: 24px;
-  padding: 5px 10px;
-  max-width: 460px;
-  width: 100%;
-  height: 30px;
-  margin-left: auto;
-  box-shadow: rgb(17, 78, 138) 0px
+  padding: 10px 10px; /* Tăng padding để cân đối chiều cao */
+  height: 50px; /* Đảm bảo chiều cao đồng bộ với các nút khác */
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều cao */
 }
 
 .search-input {
   flex: 1;
   border: none;
   outline: none;
-  font-size: 14px;
-  padding: 5px 10px;
-  
+  font-size: 16px; /* Đồng bộ kích thước chữ */
+  padding: 0 10px; /* Giảm padding để căn chỉnh đẹp hơn */
+  height: 100%; /* Giữ chiều cao đầy đủ bên trong khung */
 }
 
 .search-input::placeholder {
-  color:var(--text--color);
+  color: var(--text--color);
 }
 
 .search-icon {
-  color: var(--color);
+  color: var(--text--color);
   font-size: 18px;
-  margin-left: 10px;
 }
 
-/* Button "Post" */
-.btn-post {
+.logout-button {
+  flex: 1;
+  padding: 8px 15px; /* Đồng bộ padding với search-wrapper */
+  margin-left: 16px; /* Tăng khoảng cách giữa nút "Đăng xuất" và thanh tìm kiếm */
+  background: var(--buttom--color);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px; /* Kích thước chữ tương đồng với thanh tìm kiếm */
   display: flex;
+  align-items: center; /* Căn giữa theo trục dọc */
   justify-content: center;
-  align-items: center;
+  height: 40px; /* Chiều cao đồng bộ với thanh tìm kiếm */
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.post-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px; /* Khoảng cách giữa text và icon */
-  background-color: var(--buttom--color); /* Màu nền nút */
-  color: var(--text--color); /* Màu chữ nút */
-  border: none; /* Không viền */
-  padding: 12px 20px; /* Khoảng cách trong nút */
-  border-radius: 50px; /* Tăng độ bo góc để nút tròn hơn */
-  cursor: pointer; /* Thay đổi con trỏ khi hover */
-  font-size: 18px; /* Kích thước chữ nút */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
-}
 
-.post-button:hover {
+.logout-button:hover {
+  text-decoration: none; /* Không gạch chân khi hover */
   background-color: var(--main2--color); /* Đổi màu nền khi hover */
-  color: var(--main2--color); /* Đổi màu chữ khi hover */
   transform: scale(1.05); /* Phóng to nhẹ khi hover */
 }
 
-.icon-post i {
-  font-size: 18px; /* Kích thước icon */
-}
 
-/* Responsive: Chỉnh nút cho màn hình nhỏ */
-@media (max-width: 600px) {
-  .post-button {
-    padding: 10px 16px; /* Thu nhỏ nút trên màn hình nhỏ */
-    font-size: 16px;
-  }
-
-  .icon-post i {
-    font-size: 16px; /* Thu nhỏ icon */
-  }
-}
