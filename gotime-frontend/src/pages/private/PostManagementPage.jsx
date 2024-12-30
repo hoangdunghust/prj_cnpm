@@ -1,24 +1,19 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../../styles/PostManagementPage.css';
+import '../../styles/PostManagementPage.css'; // Import file CSS đã tạo
 
+// Giả sử bạn có dữ liệu bài đăng
 const mockPosts = [
-  { _id: 1, status: 'Chưa chọn người', title: 'Bài đăng 1', content: 'Mô tả bài đăng 1', name: 'Người đăng 1', createdAt: '2024-01-01', province: 'Hà Nội', district: 'Hoàn Kiếm', helper: null },
-  { _id: 2, status: 'Chưa chọn người', title: 'Bài đăng 2', content: 'Mô tả bài đăng 2', name: 'Người đăng 2', createdAt: '2024-01-02', province: 'Hồ Chí Minh', district: 'Quận 1', helper: null },
+  { id: 1, status: 'Chưa chọn người', title: 'Bài đăng 1', helper: null },
+  { id: 2, status: 'Đã chọn người', title: 'Bài đăng 2', helper: 'Người giúp việc A' },
   // Các bài đăng khác...
 ];
 
 const PostManagementPage = () => {
   const [posts, setPosts] = useState(mockPosts);
-  const navigate = useNavigate();
 
-  const handleManage = (_id) => {
-    // Chuyển hướng đến trang chi tiết bài đăng
-    navigate(`/post/${_id}`);
-  };
-
-  const handleDelete = (_id) => {
-    setPosts(posts.filter(post => post._id !== _id));
+  const handleDelete = (postId) => {
+    // Xóa bài đăng
+    setPosts(posts.filter((post) => post.id !== postId));
   };
 
   return (
@@ -36,15 +31,14 @@ const PostManagementPage = () => {
             </tr>
           </thead>
           <tbody>
-            {posts.map(post => (
-              <tr key={post._id}>
-                <td>{post._id}</td>
+            {posts.map((post) => (
+              <tr key={post.id}>
+                <td>{post.id}</td>
                 <td>{post.status}</td>
                 <td>{post.title}</td>
                 <td>{post.helper || 'Chưa chọn'}</td>
                 <td>
-                  <button onClick={() => handleManage(post._id)}>Quản lý</button>
-                  <button onClick={() => handleDelete(post._id)}>Xóa</button>
+                  <button onClick={() => handleDelete(post.id)}>Xóa</button>
                 </td>
               </tr>
             ))}

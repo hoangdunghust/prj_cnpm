@@ -47,7 +47,7 @@ const AppRoutes = () => {
         <Route path="/workers" 
           element={<PostManagementPage />} />
 
-        <Route path="/post/:id"
+        <Route path="/posttest/"
            element={<PostDetailPage />} />
 
         <Route path="/booking" 

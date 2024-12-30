@@ -1,92 +1,107 @@
-/* PostManagementPage.css */
 .post-management-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* Màu nền tổng thể */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+}
+
+.table-container {
+  margin-top: 30px;
+  background-color: #ffffff; /* Màu nền của bảng */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Để hỗ trợ cuộn ngang nếu bảng quá rộng */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc; /* Viền bảng */
+}
+
+th, td {
+  text-align: left;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #5e5e5e; /* Viền giữa các ô */
+}
+
+th {
+  background-color: var(--main2-color); /* Màu nền tiêu đề */
+  color: #ff5400; /* Màu chữ của tiêu đề */
+  text-transform: uppercase;
+}
+
+td {
   
-  .table-container {
-    margin-top: 30px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    text-align: left;
-    padding: 12px;
-    font-size: 16px;
-  }
-  
-  th {
-    background-color: var(--main2-color);
-    color: #fff;
-  }
-  
-  td {
-    background-color: #fff;
-  }
-  
-  button {
-    background-color: var(--button-color);
-    color:  #ff5400;
-    padding: 8px 15px;
-    font-size: 14px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: var(--main2-color);
-  }
-  
-  button:disabled {
-    background-color: #d3d3d3;
-    cursor: not-allowed;
-  }
-  
-  button + button {
-    margin-left: 10px;
-  }
-  
-  .manage-form {
-    margin-top: 20px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .manage-form input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-  
-  .manage-form button {
-    width: 100%;
-    padding: 12px;
-    background-color: var(--button-color);
-    font-size: 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .manage-form button:hover {
-    background-color: var(--main2-color);
-  }
-  
+  background-color: #ffffff; /* Nền ô dữ liệu */
+}
+
+tr:nth-child(even) td {
+  background-color: #f7f7f7; /* Màu xen kẽ hàng chẵn */
+}
+
+tr:hover td {
+  background-color: #f0f8ff; /* Hiệu ứng hover */
+}
+
+button {
+  background-color: var(--button-color); /* Màu nền nút */
+  color: #ff5400;
+  padding: 8px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--main2-color); /* Màu khi hover */
+  transform: scale(1.05); /* Hiệu ứng phóng to nhẹ */
+}
+
+button:disabled {
+  background-color: #d3d3d3; /* Màu nút bị vô hiệu */
+  cursor: not-allowed;
+}
+
+button + button {
+  margin-left: 10px;
+}
+
+.manage-form {
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.manage-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.manage-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--button-color);
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.manage-form button:hover {
+  background-color: var(--main2-color);
+}
